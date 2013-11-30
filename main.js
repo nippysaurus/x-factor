@@ -27,8 +27,7 @@ board.on("ready", function() {
       obstacle_row = 1;
 
   var frame = 1;
-      //col = 0,
-      //row = 1;
+
 
   var a = lcd.useChar("runninga");
   var b = lcd.useChar("runningb");
@@ -50,7 +49,7 @@ board.on("ready", function() {
   sensor.on("data", function(){
     if ((this.value < 3) && (man_row_zero_for == 0) && (man_cannot_jump_for == 0)) {
       man_row = 0;
-      man_row_zero_for = 3;
+      man_row_zero_for = 4;
       man_cannot_jump_for = 1;
     }
   });
