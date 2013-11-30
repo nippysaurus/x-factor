@@ -23,6 +23,7 @@ board.on("ready", function() {
   var man_col = 1,
       man_row = 1,
       man_row_zero_for = 0,
+      man_cannot_jump_for = 0;
       obstacle_row = 1;
 
   var frame = 1;
@@ -47,9 +48,10 @@ board.on("ready", function() {
   generate_obstacle();
 
   sensor.on("data", function(){
-    if ((this.value < 3) && (man_row_zero_for == 0)) {
+    if ((this.value < 3) && (man_row_zero_for == 0) && (man_cannot_jump_for == 0)) {
       man_row = 0;
       man_row_zero_for = 3;
+      man_cannot_jump_for = 1;
     }
   });
 
@@ -65,6 +67,10 @@ board.on("ready", function() {
 
       if (obstacle_col == 0) {
         generate_obstacle();
+      }
+
+      if ((man_row_zero_for == 0) && (man_row == 1) && (man_cannot_jump_for > 0)) {
+        man_cannot_jump_for--;
       }
 
       lcd.clear();
